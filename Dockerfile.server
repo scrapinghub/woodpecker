@@ -18,11 +18,11 @@ RUN apt-get update && \
     apt-get install -y ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
+ENV DATABASE_DRIVER=sqlite3
+ENV DATABASE_CONFIG=/var/lib/drone/drone.sqlite
 ENV GODEBUG=netdns=go
-COPY --from=0  /usr/local/source/woodpecker/release/drone-agent /bin/
+ENV XDG_CACHE_HOME /var/lib/drone
 
-EXPOSE 3000
-HEALTHCHECK CMD ["/bin/drone-agent", "ping"]
+COPY --from=0 /usr/local/source/woodpecker/release/drone-server /bin/
 
-ENTRYPOINT ["/bin/drone-agent"]
-
+ENTRYPOINT ["/bin/drone-server"]

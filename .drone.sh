@@ -3,11 +3,7 @@
 set -e
 set -x
 
-VERSION=$DRONE_TAG
-
-if [ -z "$VERSION" ]; then
-  VERSION=${DRONE_COMMIT_SHA:0:8}
-fi
+VERSION=${DRONE_COMMIT:0:7}
 
 echo "Building $VERSION"
 
