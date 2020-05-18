@@ -16,6 +16,7 @@ package store
 
 import (
 	"io"
+	"time"
 
 	"github.com/laszlocph/woodpecker/model"
 
@@ -79,6 +80,8 @@ type Store interface {
 
 	// GetBuildLastBefore gets the last build before build number N.
 	GetBuildLastBefore(*model.Repo, string, int64) (*model.Build, error)
+
+	GetBuildLastTimestamp() (time.Time, error)
 
 	// GetBuildList gets a list of builds for the repository
 	GetBuildList(*model.Repo, int) ([]*model.Build, error)
@@ -236,6 +239,10 @@ func GetBuildLast(c context.Context, repo *model.Repo, branch string) (*model.Bu
 
 func GetBuildLastBefore(c context.Context, repo *model.Repo, branch string, number int64) (*model.Build, error) {
 	return FromContext(c).GetBuildLastBefore(repo, branch, number)
+}
+
+func GetBuildLastTimestamp(c context.Context) (time.Time, error) {
+	return FromContext(c).GetBuildLastTimestamp()
 }
 
 func GetBuildList(c context.Context, repo *model.Repo, page int) ([]*model.Build, error) {

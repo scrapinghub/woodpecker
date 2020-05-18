@@ -15,6 +15,7 @@
 package bitbucket
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -102,7 +103,7 @@ func (c *config) Auth(token, secret string) (string, error) {
 func (c *config) Refresh(user *model.User) (bool, error) {
 	config := c.newConfig("")
 	source := config.TokenSource(
-		oauth2.NoContext, &oauth2.Token{RefreshToken: user.Secret})
+		context.Background(), &oauth2.Token{RefreshToken: user.Secret})
 
 	token, err := source.Token()
 	if err != nil || len(token.AccessToken) == 0 {

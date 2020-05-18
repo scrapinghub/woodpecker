@@ -59,6 +59,15 @@ func (db *datastore) GetBuildLastBefore(repo *model.Repo, branch string, num int
 	return build, err
 }
 
+func (db *datastore) GetBuildLastTimestamp() (time.Time, error) {
+	var build = new(model.Build)
+	var err = meddler.QueryRow(db, build, rebind(buildLastTimestamp))
+	if err != nil {
+		return time.Time{}, err
+	}
+	return time.Unix(build.Finished, 0), nil
+}
+
 func (db *datastore) GetBuildList(repo *model.Repo, page int) ([]*model.Build, error) {
 	var builds = []*model.Build{}
 	var err = meddler.QueryAll(db, &builds, rebind(buildListQuery), repo.ID, 50*(page-1))
@@ -175,6 +184,13 @@ WHERE build_repo_id = ?
 ORDER BY build_number DESC
 LIMIT 1
 `
+const buildLastTimestamp = `
+SELECT *
+FROM builds
+ORDER BY build_number DESC
+LIMIT 1
+`
+
 
 const buildCommitQuery = `
 SELECT *
