@@ -50,13 +50,13 @@ func (c *client) Next(ctx context.Context, f Filter) (*Pipeline, error) {
 		} else {
 			log.Printf("grpc error: done(): code: %v: %s", grpc.Code(err), err)
 		}
+
 		switch grpc.Code(err) {
 		case
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return nil, err
@@ -95,8 +95,7 @@ func (c *client) Wait(ctx context.Context, id string) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err
@@ -129,8 +128,7 @@ func (c *client) Init(ctx context.Context, id string, state State) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err
@@ -163,8 +161,7 @@ func (c *client) Done(ctx context.Context, id string, state State) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err
@@ -190,8 +187,7 @@ func (c *client) Extend(ctx context.Context, id string) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err
@@ -224,8 +220,7 @@ func (c *client) Update(ctx context.Context, id string, state State) (err error)
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err
@@ -259,8 +254,7 @@ func (c *client) Upload(ctx context.Context, id string, file *File) (err error) 
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err
@@ -291,8 +285,7 @@ func (c *client) Log(ctx context.Context, id string, line *Line) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal,
-			codes.Unavailable:
+			codes.Internal:
 			// non-fatal errors
 		default:
 			return err

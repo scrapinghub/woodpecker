@@ -107,8 +107,8 @@ var flags = []cli.Flag{
 	},
 	cli.StringSliceFlag{
 		EnvVar: "DRONE_REPO_OWNERS",
-		Name: "repo-owners",
-		Usage: "List of syncable repo owners",
+		Name:   "repo-owners",
+		Usage:  "List of syncable repo owners",
 	},
 	cli.BoolFlag{
 		EnvVar: "DRONE_OPEN",
@@ -544,14 +544,14 @@ var flags = []cli.Flag{
 		Name:   "autoscaling-google-zone",
 	},
 	cli.IntFlag{
-		Name: "autoscaling-minimum-instance-size",
+		Name:   "autoscaling-minimum-instance-size",
 		EnvVar: "DRONE_AUTOSCALING_MINIMUM_INSTANCE_SIZE",
-		Value: 0,
+		Value:  0,
 	},
 	cli.IntFlag{
-		Name: "autoscaling-maximum-instance-size",
+		Name:   "autoscaling-maximum-instance-size",
 		EnvVar: "DRONE_AUTOSCALING_MAXIMUM_INSTANCE_SIZE",
-		Value: 10,
+		Value:  10,
 	},
 }
 

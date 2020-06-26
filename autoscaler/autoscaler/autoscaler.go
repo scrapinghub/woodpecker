@@ -10,20 +10,20 @@ import (
 )
 
 type scaler struct {
-	capacityPerAgent int
-	provider         autoscaler.Provider
+	capacityPerAgent   int
+	provider           autoscaler.Provider
 	minimumInstanceAge time.Duration
-	minimumInstances int
-	maximumInstances int
+	minimumInstances   int
+	maximumInstances   int
 }
 
-func New(capacityPerAgent int,  provider autoscaler.Provider, minimumInstanceAge time.Duration, minimumInstances int, maximumInstances int) autoscaler.Autoscaler {
+func New(capacityPerAgent int, provider autoscaler.Provider, minimumInstanceAge time.Duration, minimumInstances int, maximumInstances int) autoscaler.Autoscaler {
 	return &scaler{
-		capacityPerAgent: capacityPerAgent,
-		provider:         provider,
+		capacityPerAgent:   capacityPerAgent,
+		provider:           provider,
 		minimumInstanceAge: minimumInstanceAge,
-		minimumInstances:minimumInstances,
-		maximumInstances: maximumInstances,
+		minimumInstances:   minimumInstances,
+		maximumInstances:   maximumInstances,
 	}
 }
 
@@ -55,11 +55,11 @@ func (a scaler) scale(ctx context.Context) {
 			var desired = queue.Workers
 
 			if diff > 0 {
-				desired = autoscaler.Min(queue.Workers + diff, a.maximumInstances)
+				desired = autoscaler.Min(queue.Workers+diff, a.maximumInstances)
 			}
 
 			if diff < 0 {
-				desired = autoscaler.Max(queue.Workers - autoscaler.Abs(diff), a.minimumInstances)
+				desired = autoscaler.Max(queue.Workers-autoscaler.Abs(diff), a.minimumInstances)
 			}
 
 			a.provider.SetCapacity(desired, a.minimumInstanceAge)

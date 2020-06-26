@@ -19,6 +19,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	grpccredentials "google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/keepalive"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -28,7 +29,6 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/metadata"
 
 	"github.com/laszlocph/woodpecker/cncd/pipeline/pipeline"

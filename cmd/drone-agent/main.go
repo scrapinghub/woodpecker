@@ -102,12 +102,13 @@ func main() {
 			EnvVar: "DRONE_KEEPALIVE_TIME",
 			Name:   "keepalive-time",
 			Usage:  "after a duration of this time of no activity, the agent pings the server to check if the transport is still alive",
+			Value:  time.Second * 30,
 		},
 		cli.DurationFlag{
 			EnvVar: "DRONE_KEEPALIVE_TIMEOUT",
 			Name:   "keepalive-timeout",
 			Usage:  "after pinging for a keepalive check, the agent waits for a duration of this time before closing the connection if no activity",
-			Value:  time.Second * 20,
+			Value:  time.Second * 10,
 		},
 		cli.BoolFlag{
 			Name:   "secure-grpc",

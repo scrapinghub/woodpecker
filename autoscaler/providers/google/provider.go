@@ -117,7 +117,6 @@ func (p provider) SetCapacity(n int, minimumAge time.Duration) error {
 		n = autoscaler.Max(currentSize-allowedDeletions, 0)
 	}
 
-
 	if n != currentSize {
 		logrus.Infof("Setting target size to %d from %d", n, currentSize)
 		_, err = p.service.InstanceGroupManagers.Resize(p.projectId, p.zone, p.instanceGroup, int64(n)).Do()
