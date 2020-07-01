@@ -95,7 +95,8 @@ func (c *client) Wait(ctx context.Context, id string) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
@@ -128,7 +129,8 @@ func (c *client) Init(ctx context.Context, id string, state State) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
@@ -161,7 +163,8 @@ func (c *client) Done(ctx context.Context, id string, state State) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
@@ -187,7 +190,8 @@ func (c *client) Extend(ctx context.Context, id string) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
@@ -220,7 +224,8 @@ func (c *client) Update(ctx context.Context, id string, state State) (err error)
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
@@ -254,7 +259,8 @@ func (c *client) Upload(ctx context.Context, id string, file *File) (err error) 
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
@@ -285,7 +291,8 @@ func (c *client) Log(ctx context.Context, id string, line *Line) (err error) {
 			codes.Aborted,
 			codes.DataLoss,
 			codes.DeadlineExceeded,
-			codes.Internal:
+			codes.Internal,
+			codes.Unavailable:
 			// non-fatal errors
 		default:
 			return err
